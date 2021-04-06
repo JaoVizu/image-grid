@@ -1,18 +1,14 @@
-import axios from 'axios'
-
-const CLIENT_ID = 'zDVxaBDoHIhKzILAMsywY0NjXphqt51rZYThmcLKhzY'
-
-const api = axios.create({
-  baseURL: `https://api.unsplash.com/`
-})
+import api from './api.js'
 
 const randomPhotoEndPoint = '/photos/random'
+
+console.log('teste', process.env.VUE_APP_CLIENT_ID)
 
 export const getRandomPhotos = async query => {
   try{
     const res = await api.get(randomPhotoEndPoint ,{
       params: {
-        client_id: CLIENT_ID,
+        client_id: process.env.VUE_APP_CLIENT_ID,
         count: 15,
         query: query
       }
