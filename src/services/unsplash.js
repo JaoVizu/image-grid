@@ -2,8 +2,6 @@ import api from './api.js'
 
 const randomPhotoEndPoint = '/photos/random'
 
-console.log('teste', process.env.VUE_APP_CLIENT_ID)
-
 export const getRandomPhotos = async query => {
   try{
     const res = await api.get(randomPhotoEndPoint ,{
