@@ -29,12 +29,19 @@ export default {
 }
 </script>
 
-<style>
-  
+<style scoped>
+  img{
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+
   .images__card {
     background: #fff;
     margin: 40px 20px 20px;
     transition: box-shadow .3s;
+    flex: 1 1 500px;
+    align-self: flex-start;
   }
 
   .images__card:hover {
