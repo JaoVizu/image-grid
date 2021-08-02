@@ -11,28 +11,32 @@
 
     <div class="grid">
       <Image
-        v-if="images.length > 0" 
-        :images="images"
+        v-if="randomPhotos.length > 0" 
+        :images="randomPhotos"
       />
     </div>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions} from 'vuex'
 import Image from './Image.vue'
-
-import { getRandomPhotos } from '../services/unsplash'
 
 export default {
   data(){
     return {
-      images: [],
       query: ''
     }
   },
-  methods : {
-    searchImages(){
-      getRandomPhotos(this.query).then(res => this.images = res)
+  computed: {
+    ...mapState({
+      randomPhotos: state => state.randomPhotos
+    })
+  },
+  methods: {
+    ...mapActions(['apiGetRandomPhotos']),
+    async searchImages(){
+      await this.apiGetRandomPhotos(this.query)
     }
   },
   components: { Image },

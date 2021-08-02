@@ -10,7 +10,7 @@
         <p>
           <a :href="image.user.links.html" target="_blank">{{image.user.name}}</a>
         </p>
-        <span>
+        <span @click="sendLikeToPhoto(image)">
           <i class="fa fa-heart"></i>
             {{image.user.total_likes}}
         </span>
@@ -19,12 +19,21 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     images: Array
   },
-  created() {
-    console.log(this.images)
+  methods: {
+    ...mapActions(['apiSendLikeToPhoto']),
+    sendLikeToPhoto({id}) {
+      console.log('You want to send like to:',id)
+      this.$store.commit('increment')
+      console.log('Store', this.$store.state.count)
+      this.apiSendLikeToPhoto({id})
+      
+    }
   }
 }
 </script>
